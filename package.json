@@ -1,0 +1,20 @@
+{
+  "name": "thank-you-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build src/action.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vickeyksoni/thank-you-action.git"
+  },
+  "author": "Vickey Kumar Soni",
+  "license": "SAP",
+  "bugs": {
+    "url": "https://github.com/vickeyksoni/thank-you-action/issues"
+  },
+  "homepage": "https://github.com/vickeyksoni/thank-you-action#readme"
+}
