@@ -1,12 +1,12 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const Toolkit = require('actions-toolkit')
-import {
-    FrontMatterAttributes,
-    frontmatterSchema,
-    listToArray,
-    setOutputs,
-  } from "./helpers";
+// import {
+//     FrontMatterAttributes,
+//     frontmatterSchema,
+//     listToArray,
+//     setOutputs,
+//   } from "./helpers";
 
 
 
@@ -24,15 +24,15 @@ async function run() {
     const issue = await tools.github.issues.create({
       ...Toolkit.context.repo,
       ...templated,
-      assignees: assignees
-        ? listToArray(assignees)
-        : listToArray(attributes.assignees),
+      assignees: assignees,
+        //? listToArray(assignees)
+        //: listToArray(attributes.assignees),
       labels: listToArray(attributes.labels),
       milestone:
         Number(tools.inputs.milestone || attributes.milestone) || undefined,
     });
 
-    setOutputs(tools, issue.data);
+    //setOutputs(tools, issue.data);
     Toolkit.log.success(
       `Created issue ${issue.data.title}#${issue.data.number}: ${issue.data.html_url}`
     );
