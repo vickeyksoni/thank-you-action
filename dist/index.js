@@ -9615,6 +9615,22 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 6717:
+/***/ ((module) => {
+
+module.exports = eval("require")("./helpers");
+
+
+/***/ }),
+
+/***/ 1900:
+/***/ ((module) => {
+
+module.exports = eval("require")("actions-toolkit");
+
+
+/***/ }),
+
 /***/ 2877:
 /***/ ((module) => {
 
@@ -9784,21 +9800,98 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__nccwpck_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__nccwpck_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__nccwpck_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__nccwpck_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat */
 /******/ 	
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
+__nccwpck_require__.r(__webpack_exports__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(6717);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_helpers__WEBPACK_IMPORTED_MODULE_0__);
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
+const Toolkit = __nccwpck_require__(1900)
+;
 
 
 
 
 async function run() {
+
+   //
+   const templated = {
+    body: env.renderString(body, templateVariables),
+    title: env.renderString(attributes.title, templateVariables),
+  };
+  const assignees = Toolkit.inputs.assignees;
+
+  try {
+    const issue = await tools.github.issues.create({
+      ...Toolkit.context.repo,
+      ...templated,
+      assignees: assignees
+        ? (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.listToArray)(assignees)
+        : (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.listToArray)(attributes.assignees),
+      labels: (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.listToArray)(attributes.labels),
+      milestone:
+        Number(tools.inputs.milestone || attributes.milestone) || undefined,
+    });
+
+    (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.setOutputs)(tools, issue.data);
+    Toolkit.log.success(
+      `Created issue ${issue.data.title}#${issue.data.number}: ${issue.data.html_url}`
+    );
+  } catch (err) {
+    return logError(Toolkit, template, "creating", err);
+  }
+
+   //
+
+
     const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
 
     const octokit = github.getOctokit(GITHUB_TOKEN);
