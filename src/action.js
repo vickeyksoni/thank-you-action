@@ -29,7 +29,7 @@ async function run() {
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
       title: 'title',
-      // labels: 'label',
+      labels: core.getInput('bug'),
       //assignees: options.assignees,
       body: 'Bodyy'
     })) || {};
@@ -59,7 +59,7 @@ async function run() {
     await octokit.rest.issues.createComment({
         ...context.repo,
         issue_number: newIssueNumber, //pull_request.number,
-        body: `Thank you for submitting a pull request! We will try to review this as soon as we can:  https://github.com/vickeyksoni/thank-you-action/pull/${pull_request.number}  @vickeyksoni`
+        body: `Thank you for submitting a pull request! We will try to review this as soon as we can:  https://github.com/vickeyksoni/thank-you-action/pull/${newIssueNumber}  @vickeyksoni`
       });
   }
   
