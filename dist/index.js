@@ -9823,7 +9823,7 @@ async function run() {
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
       title: 'title',
-      labels: 'label',
+      // labels: 'label',
       //assignees: options.assignees,
       body: 'Bodyy'
     })) || {};
