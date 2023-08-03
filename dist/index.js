@@ -9821,13 +9821,13 @@ async function run() {
     // options = removeEmptyProp(Object.assign({}, options));
   
     core.info(`Creating new issue with options: ${JSON.stringify('Test')} and body: Body `);
-  
+
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
-      title: 'title',
+      title: core.getInput('title') + toString((new Date()).getDay()) + "-" + toString((new Date()).getMonth()) + "-" + toString((new Date()).getFullYear()),
       labels: ["bug"],
-      assignees: ["vickeyksoni"],
-      body: 'Bodyy'
+      assignees: core.getInput('assignees'),
+      body: '**Updates**'
     })) || {};
   
     core.debug(`New issue number: ${newIssueNumber}`);

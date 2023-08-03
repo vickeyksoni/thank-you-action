@@ -12,6 +12,8 @@ jobs:
       - uses: ./
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          title: "Architect Sync On "
+          assignees: "vickeyksoni"
           body: |
             ### Agenda
 
