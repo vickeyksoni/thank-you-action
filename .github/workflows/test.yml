@@ -15,14 +15,13 @@ jobs:
           title: "Architect Sync On "
           assignees: "vickeyksoni"
           body: |
-            ### Agenda
+            ## Notes
 
-            - [ ] Start the recording
-            - [ ] Check-ins
-            - [ ] Discussion points
-            - [ ] Post the recording
-                    
-            ### Discussion Points
-            Add things to discuss below
+            ## Points to be discussed
 
-            - [Work this week] https://github.com/vickeyksoni/thank-you-action/issues/
+            | Topic            | Details         | Action Item | Status          |
+            | ------------- | ------------- | ------------- | ------------- |
+            | ..                  |  ..                  | ..                  | ..                   |
+
+            ## Updates
+            https://github.com/vickeyksoni/thank-you-action/issues/

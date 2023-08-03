@@ -7,11 +7,15 @@
 //     listToArray,
 //     setOutputs,
 //   } from "./helpers";
+  const currentDate = new Date();
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  const currentDateString = `${day}-${month}-${year}`;
 
 
 
-
-async function run() {
+async function run(currentDateString) {
   const core = require('@actions/core');
   const github = require('@actions/github');
 
@@ -30,10 +34,10 @@ async function run() {
 
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
-      title: core.getInput('title'),// + toString((new Date()).getDay()) + "-" + toString((new Date()).getMonth()) + "-" + toString((new Date()).getFullYear()),
+      title: core.getInput('title') + currentDateString,// + toString((new Date()).getDay()) + "-" + toString((new Date()).getMonth()) + "-" + toString((new Date()).getFullYear()),
       labels: ["bug"],
       assignees: [core.getInput('assignees')],
-      body: '**Updates**'
+      body: '### Updates:'
     })) || {};
   
     core.debug(`New issue number: ${newIssueNumber}`);
@@ -43,19 +47,6 @@ async function run() {
     console.log(newIssueNumber);
     console.log(newIssueId);
 
-  //   return {
-  //     newIssueNumber: Number(newIssueNumber),
-  //     newIssueId,
-  //     newIssueNodeId
-  //   };
-  // };
-
-   //
-
-
- 
-
-    // const { context = {} } = github;
     const { pull_request } = context.payload;
     var bodyNew = core.getInput('body') + newIssueNumber;
     await octokit.rest.issues.createComment({
