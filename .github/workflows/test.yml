@@ -2,7 +2,7 @@ name: Test
 
 on:
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '*/6 * * * *'
 jobs:
   test:
     runs-on: ubuntu-latest
