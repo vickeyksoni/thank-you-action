@@ -9795,22 +9795,14 @@ var __webpack_exports__ = {};
 // const core = require('@actions/core');
 // const github = require('@actions/github');
 
-// import {
-//     FrontMatterAttributes,
-//     frontmatterSchema,
-//     listToArray,
-//     setOutputs,
-//   } from "./helpers";
+async function run(currentDateString) {
+
   const currentDate = new Date();
   const day = String(currentDate.getDay());
   const month = String(currentDate.getMonth())
   const year = currentDate.getFullYear();
   var currentDateString = `${day}-${month}-${year}`;
-  console.log(currentDateString);
 
-
-
-async function run(currentDateString) {
   const core = __nccwpck_require__(2186);
   const github = __nccwpck_require__(5438);
 
