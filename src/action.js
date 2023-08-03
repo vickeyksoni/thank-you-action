@@ -57,11 +57,13 @@ async function run() {
 
     // const { context = {} } = github;
     const { pull_request } = context.payload;
-
+    var bodyNew = core.getInput('body') + newIssueNumber;
     await octokit.rest.issues.createComment({
         ...context.repo,
         issue_number: newIssueNumber, //pull_request.number,
-        body: `Thank you for submitting a pull request! We will try to review this as soon as we can:  https://github.com/vickeyksoni/thank-you-action/pull/${newIssueNumber}  @vickeyksoni`
+        body: bodyNew
+
+        //body: `Thank you for submitting a pull request! We will try to review this as soon as we can:  https://github.com/vickeyksoni/thank-you-action/pull/${newIssueNumber}  @vickeyksoni`
       });
   }
   

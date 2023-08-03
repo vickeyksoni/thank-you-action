@@ -12,3 +12,15 @@ jobs:
       - uses: ./
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          body: |
+            ### Agenda
+
+            - [ ] Start the recording
+            - [ ] Check-ins
+            - [ ] Discussion points
+            - [ ] Post the recording
+                    
+            ### Discussion Points
+            Add things to discuss below
+
+            - [Work this week] https://github.com/vickeyksoni/thank-you-action/issues/
