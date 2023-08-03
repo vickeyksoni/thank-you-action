@@ -20,7 +20,7 @@ async function run() {
 
   const { context } = require('@actions/github');
 
-  const createNewIssue = async (options) => {
+  // const createNewIssue = async (options) => {
     // // Remove empty props in order to make valid API calls
     // options = removeEmptyProp(Object.assign({}, options));
   
@@ -38,12 +38,12 @@ async function run() {
     core.debug(`New issue id: ${newIssueId}`);
     core.debug(`New issue node ID: ${newIssueNodeId}`);
   
-    return {
-      newIssueNumber: Number(newIssueNumber),
-      newIssueId,
-      newIssueNodeId
-    };
-  };
+  //   return {
+  //     newIssueNumber: Number(newIssueNumber),
+  //     newIssueId,
+  //     newIssueNodeId
+  //   };
+  // };
 
    //
 
