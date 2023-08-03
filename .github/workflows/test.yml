@@ -13,7 +13,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           title: "Architect Sync On "
-          assignees: "vickeyksoni"
+          assignees: ["vickeyksoni"]
           body: |
             ### Agenda
 
