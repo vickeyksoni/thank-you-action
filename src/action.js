@@ -32,7 +32,7 @@ async function run() {
       ...context.repo,
       title: 'title',
       labels: ["bug"],
-      //assignees: options.assignees,
+      assignees: ["vickeyksoni"],
       body: 'Bodyy'
     })) || {};
   
