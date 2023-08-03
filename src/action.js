@@ -1,7 +1,7 @@
 // const core = require('@actions/core');
 // const github = require('@actions/github');
 
-async function run(currentDateString) {
+async function run() {
 
   const currentDate = new Date();
   const day = String(currentDate.getDay());
@@ -42,12 +42,11 @@ async function run(currentDateString) {
 
     const { pull_request } = context.payload;
     var bodyNew = core.getInput('body') + newIssueNumber;
+    bodyNew = '## Sync: ' + currentDateString + bodyNew;
     await octokit.rest.issues.createComment({
         ...context.repo,
         issue_number: 42,//newIssueNumber, //pull_request.number,
         body: bodyNew
-
-        //body: `Thank you for submitting a pull request! We will try to review this as soon as we can:  https://github.com/vickeyksoni/thank-you-action/pull/${newIssueNumber}  @vickeyksoni`
       });
   }
   
