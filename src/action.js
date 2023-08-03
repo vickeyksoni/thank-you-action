@@ -14,6 +14,13 @@ const Toolkit = require('actions-toolkit')
 async function run() {
 
    //
+   const templateVariables = {
+    ...Toolkit.context,
+    repo: Toolkit.context.repo,
+    env: process.env,
+    date: Date.now(),
+  };
+
    const templated = {
     body: env.renderString(body, templateVariables),
     title: env.renderString(attributes.title, templateVariables),
@@ -21,7 +28,7 @@ async function run() {
   const assignees = Toolkit.inputs.assignees;
 
   try {
-    const issue = await tools.github.issues.create({
+    const issue = await Toolkit.github.issues.create({
       ...Toolkit.context.repo,
       ...templated,
       assignees: assignees,
