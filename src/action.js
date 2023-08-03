@@ -43,6 +43,7 @@ async function run() {
     const { pull_request } = context.payload;
     var bodyNew = core.getInput('body') + newIssueNumber;
     bodyNew.replace('Sync:', `Sync: ${currentDateString}`)
+    console.log(bodyNew);
     await octokit.rest.issues.createComment({
         ...context.repo,
         issue_number: 42,//newIssueNumber, //pull_request.number,
