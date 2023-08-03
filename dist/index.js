@@ -21897,7 +21897,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
-const Toolkit = __nccwpck_require__(7045)
+
 // import {
 //     FrontMatterAttributes,
 //     frontmatterSchema,
@@ -21908,8 +21908,8 @@ const Toolkit = __nccwpck_require__(7045)
 
 
 
-async function run(Toolkit) {
-
+async function run() {
+  const Toolkit = __nccwpck_require__(7045)
    //
    const templateVariables = {
     ...Toolkit.context,

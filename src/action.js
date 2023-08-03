@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const Toolkit = require('actions-toolkit')
+
 // import {
 //     FrontMatterAttributes,
 //     frontmatterSchema,
@@ -11,8 +11,8 @@ const Toolkit = require('actions-toolkit')
 
 
 
-async function run(Toolkit) {
-
+async function run() {
+  const Toolkit = require('actions-toolkit')
    //
    const templateVariables = {
     ...Toolkit.context,
