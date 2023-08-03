@@ -12,49 +12,45 @@ const github = require('@actions/github');
 
 
 async function run() {
-  const Toolkit = require('actions-toolkit')
-   //
-   const templateVariables = {
-    ...Toolkit.context,
-    repo: Toolkit.context.repo,
-    env: process.env,
-    date: Date.now(),
+
+  const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
+
+  const octokit = github.getOctokit(GITHUB_TOKEN);
+  //
+
+  const { context } = require('@actions/github');
+
+  const createNewIssue = async (options) => {
+    // // Remove empty props in order to make valid API calls
+    // options = removeEmptyProp(Object.assign({}, options));
+  
+    core.info(`Creating new issue with options: ${JSON.stringify('Test')} and body: Body `);
+  
+    const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
+      ...context.repo,
+      title: 'title',
+      labels: 'label',
+      //assignees: options.assignees,
+      body: 'Bodyy'
+    })) || {};
+  
+    core.debug(`New issue number: ${newIssueNumber}`);
+    core.debug(`New issue id: ${newIssueId}`);
+    core.debug(`New issue node ID: ${newIssueNodeId}`);
+  
+    return {
+      newIssueNumber: Number(newIssueNumber),
+      newIssueId,
+      newIssueNodeId
+    };
   };
-
-   const templated = {
-    body: env.renderString(body, templateVariables),
-    title: env.renderString(attributes.title, templateVariables),
-  };
-  const assignees = Toolkit.inputs.assignees;
-
-  try {
-    const issue = await Toolkit.github.issues.create({
-      ...Toolkit.context.repo,
-      ...templated,
-      assignees: assignees,
-        //? listToArray(assignees)
-        //: listToArray(attributes.assignees),
-      labels: listToArray(attributes.labels),
-      milestone:
-        Number(tools.inputs.milestone || attributes.milestone) || undefined,
-    });
-
-    //setOutputs(tools, issue.data);
-    Toolkit.log.success(
-      `Created issue ${issue.data.title}#${issue.data.number}: ${issue.data.html_url}`
-    );
-  } catch (err) {
-    return logError(Toolkit, template, "creating", err);
-  }
 
    //
 
 
-    const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
+ 
 
-    const octokit = github.getOctokit(GITHUB_TOKEN);
-
-    const { context = {} } = github;
+    // const { context = {} } = github;
     const { pull_request } = context.payload;
 
     await octokit.rest.issues.createComment({
