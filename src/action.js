@@ -38,6 +38,9 @@ async function run() {
     core.debug(`New issue id: ${newIssueId}`);
     core.debug(`New issue node ID: ${newIssueNodeId}`);
   
+    console.log(newIssueNumber);
+    console.log(newIssueId);
+
   //   return {
   //     newIssueNumber: Number(newIssueNumber),
   //     newIssueId,
