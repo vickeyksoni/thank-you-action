@@ -9824,7 +9824,7 @@ async function run() {
 
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
-      title: core.getInput('title') + toString((new Date()).getDay()) + "-" + toString((new Date()).getMonth()) + "-" + toString((new Date()).getFullYear()),
+      title: core.getInput('title'),// + toString((new Date()).getDay()) + "-" + toString((new Date()).getMonth()) + "-" + toString((new Date()).getFullYear()),
       labels: ["bug"],
       assignees: core.getInput('assignees'),
       body: '**Updates**'
