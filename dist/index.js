@@ -9826,7 +9826,7 @@ async function run() {
       ...context.repo,
       title: core.getInput('title'),// + toString((new Date()).getDay()) + "-" + toString((new Date()).getMonth()) + "-" + toString((new Date()).getFullYear()),
       labels: ["bug"],
-      assignees: core.getInput('assignees'),
+      assignees: [core.getInput('assignees')],
       body: '**Updates**'
     })) || {};
   
