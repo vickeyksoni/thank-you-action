@@ -8,10 +8,11 @@
 //     setOutputs,
 //   } from "./helpers";
   const currentDate = new Date();
-  const day = String(currentDate.getDate()).padStart(2, '0');
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDay());
+  const month = String(currentDate.getMonth())
   const year = currentDate.getFullYear();
-  const currentDateString = `${day}-${month}-${year}`;
+  var currentDateString = `${day}-${month}-${year}`;
+  console.log(currentDateString);
 
 
 
