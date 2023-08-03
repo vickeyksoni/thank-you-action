@@ -9798,8 +9798,8 @@ var __webpack_exports__ = {};
 async function run() {
 
   const currentDate = new Date();
-  const day = String(currentDate.getDay());
-  const month = String(currentDate.getMonth())
+  const day = String(currentDate.getDay()).padStart(2, '0');
+  const month = String(currentDate.getMonth()).padStart(2, '0')
   const year = currentDate.getFullYear();
   var currentDateString = `${day}-${month}-${year}`;
 
