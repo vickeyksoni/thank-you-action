@@ -1,5 +1,5 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+// const core = require('@actions/core');
+// const github = require('@actions/github');
 
 // import {
 //     FrontMatterAttributes,
@@ -12,6 +12,8 @@ const github = require('@actions/github');
 
 
 async function run() {
+  const core = require('@actions/core');
+  const github = require('@actions/github');
 
   const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
 
@@ -29,7 +31,7 @@ async function run() {
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
       title: 'title',
-      labels: core.getInput('bug'),
+      labels: ["bug"],
       //assignees: options.assignees,
       body: 'Bodyy'
     })) || {};

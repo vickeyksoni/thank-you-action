@@ -9792,8 +9792,8 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-const core = __nccwpck_require__(2186);
-const github = __nccwpck_require__(5438);
+// const core = require('@actions/core');
+// const github = require('@actions/github');
 
 // import {
 //     FrontMatterAttributes,
@@ -9806,6 +9806,8 @@ const github = __nccwpck_require__(5438);
 
 
 async function run() {
+  const core = __nccwpck_require__(2186);
+  const github = __nccwpck_require__(5438);
 
   const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
 
@@ -9823,7 +9825,7 @@ async function run() {
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
       title: 'title',
-      labels: core.getInput('bug'),
+      labels: ["bug"],
       //assignees: options.assignees,
       body: 'Bodyy'
     })) || {};
