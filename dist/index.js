@@ -21908,7 +21908,7 @@ const Toolkit = __nccwpck_require__(7045)
 
 
 
-async function run() {
+async function run(Toolkit) {
 
    //
    const templateVariables = {

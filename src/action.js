@@ -11,7 +11,7 @@ const Toolkit = require('actions-toolkit')
 
 
 
-async function run() {
+async function run(Toolkit) {
 
    //
    const templateVariables = {
