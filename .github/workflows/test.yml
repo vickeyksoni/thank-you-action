@@ -13,7 +13,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           original_issue: 42
-          issue_url_path: "https://github.com/vickeyksoni/thank-you-action/issues/"
           title: "Architect Sync On "
           assignees: "vickeyksoni"
           body: |
@@ -29,5 +28,5 @@ jobs:
 
             ## Updates
             
+            https://github.com/vickeyksoni/thank-you-action/issues/
 
-            

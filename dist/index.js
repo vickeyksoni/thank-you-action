@@ -13016,14 +13016,14 @@ const currentDate = new Date();
   const day = String(futureDate.getDate()).padStart(2, '0');
   const month = String(futureDate.getMonth()).padStart(2, '0')
   const year = futureDate.getFullYear();
-  var currentDateString = `${day}-${month}-${year}`;
+  var futureDateString = `${day}-${month}-${year}`;
 
   const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
   const octokit = github.getOctokit(GITHUB_TOKEN);
 
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
-      title: core.getInput('title') + " " + currentDateString,
+      title: core.getInput('title') + " " + futureDateString,
       labels: ["bug"],
       assignees: [core.getInput('assignees')],
       body: '### Updates:'
@@ -13035,8 +13035,8 @@ const currentDate = new Date();
   
 
     // const { pull_request } = context.payload;
-    var bodyNew = core.getInput('body') + core.getInput('issue_url_path') + newIssueNumber;
-    bodyNew = bodyNew.replace('Sync:', `Sync: ${currentDateString}`)
+    var bodyNew = core.getInput('body') + newIssueNumber;
+    bodyNew = bodyNew.replace('Sync:', `Sync: ${futureDateString}`)
     console.log(bodyNew);
     await octokit.rest.issues.createComment({
         ...context.repo,
