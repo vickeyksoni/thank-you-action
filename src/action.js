@@ -46,7 +46,7 @@ async function run() {
     console.log(bodyNew);
     await octokit.rest.issues.createComment({
         ...context.repo,
-        issue_number: 42,//newIssueNumber, //pull_request.number,
+        issue_number: core.getInput('original_issue'),//newIssueNumber, //pull_request.number,
         body: bodyNew
       });
   }

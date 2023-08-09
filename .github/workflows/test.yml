@@ -12,6 +12,7 @@ jobs:
       - uses: ./
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          original_issue: 42
           title: "Architect Sync On "
           assignees: "vickeyksoni"
           body: |
