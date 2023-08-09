@@ -13024,7 +13024,7 @@ const currentDate = new Date();
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
       title: core.getInput('title') + " " + futureDateString,
-      labels: ["bug"],
+      labels: [core.getInput('label')],
       assignees: [core.getInput('assignees')],
       body: '### Updates:'
     })) || {};

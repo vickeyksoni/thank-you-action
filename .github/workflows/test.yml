@@ -12,9 +12,10 @@ jobs:
       - uses: ./
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          original_issue: 42
+          original_issue: 1
+          label: "Architect Sync"
           title: "Architect Sync On "
-          assignees: "vickeyksoni"
+          assignees: "I338916"
           body: |
             ## Sync:
 
@@ -28,5 +29,5 @@ jobs:
 
             ## Updates
             
-            https://github.com/vickeyksoni/thank-you-action/issues/
+            https://github.wdf.sap.corp/I338916/B1CEBotArchitect/issues/
 
