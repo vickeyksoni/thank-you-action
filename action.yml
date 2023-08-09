@@ -1,5 +1,5 @@
-name: 'Thank You Action'
-description: 'Say "Thank You" to a new pull requests'
+name: 'Bot4Architects'
+description: 'Create sync issues for Architects forum'
 author: 'Vickey'
 
 inputs:
@@ -12,4 +12,4 @@ inputs:
 
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'complilation/index.js'
