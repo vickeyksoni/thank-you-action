@@ -8,10 +8,16 @@ const { context } = require('@actions/github');
 
 async function run() {
 
-  const currentDate = new Date();
-  const day = String(currentDate.getDay()).padStart(2, '0');
-  const month = String(currentDate.getMonth()).padStart(2, '0')
-  const year = currentDate.getFullYear();
+  // Get the current date
+const currentDate = new Date();
+
+// Add 5 days to the current date
+  const futureDate = new Date(currentDate);
+  futureDate.setDate(currentDate.getDate() + 5);
+
+  const day = String(futureDate.getDate()).padStart(2, '0');
+  const month = String(futureDate.getMonth()).padStart(2, '0')
+  const year = futureDate.getFullYear();
   var currentDateString = `${day}-${month}-${year}`;
 
   const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
