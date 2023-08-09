@@ -12999,6 +12999,11 @@ var __webpack_exports__ = {};
 // const core = require('@actions/core');
 // const github = require('@actions/github');
 
+const core = __nccwpck_require__(2186);
+const github = __nccwpck_require__(5438);
+const { context } = __nccwpck_require__(5438);
+
+
 async function run() {
 
   const currentDate = new Date();
@@ -13007,25 +13012,12 @@ async function run() {
   const year = currentDate.getFullYear();
   var currentDateString = `${day}-${month}-${year}`;
 
-  const core = __nccwpck_require__(2186);
-  const github = __nccwpck_require__(5438);
-
   const GITHUB_TOKEN = core.getInput('GITHUB_TOKEN');
-
   const octokit = github.getOctokit(GITHUB_TOKEN);
-  //
-
-  const { context } = __nccwpck_require__(5438);
-
-  // const createNewIssue = async (options) => {
-    // // Remove empty props in order to make valid API calls
-    // options = removeEmptyProp(Object.assign({}, options));
-  
-    core.info(`Creating new issue with options: ${JSON.stringify('Test')} and body: Body `);
 
     const { data: { number: newIssueNumber, id: newIssueId, node_id: newIssueNodeId } } = (await octokit.rest.issues.create({
       ...context.repo,
-      title: core.getInput('title') + " " + currentDateString,// + toString((new Date()).getDay()) + "-" + toString((new Date()).getMonth()) + "-" + toString((new Date()).getFullYear()),
+      title: core.getInput('title') + " " + currentDateString,
       labels: ["bug"],
       assignees: [core.getInput('assignees')],
       body: '### Updates:'
@@ -13035,16 +13027,14 @@ async function run() {
     core.debug(`New issue id: ${newIssueId}`);
     core.debug(`New issue node ID: ${newIssueNodeId}`);
   
-    console.log(newIssueNumber);
-    console.log(newIssueId);
 
-    const { pull_request } = context.payload;
+    // const { pull_request } = context.payload;
     var bodyNew = core.getInput('body') + newIssueNumber;
     bodyNew = bodyNew.replace('Sync:', `Sync: ${currentDateString}`)
     console.log(bodyNew);
     await octokit.rest.issues.createComment({
         ...context.repo,
-        issue_number: core.getInput('original_issue'),//newIssueNumber, //pull_request.number,
+        issue_number: core.getInput('original_issue'),
         body: bodyNew
       });
   }
